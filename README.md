@@ -37,14 +37,12 @@ Dies ist effizienter als separate Crops, da das Backbone nur einmal läuft.
 
 ### 3. Keypoint Head - Offset Vorhersage
 ```python
-# Direkt aus YOLO-Pose (ultralytics/nn/modules/head.py, Zeile 353)
 Conv(512→256, 3×3) → Conv(256→256, 3×3) → Conv(256→2, 1×1)
 ```
 Der Keypoint Head gibt **2 Werte** pro Box aus: `(offset_x, offset_y)`
 
 ### 4. Decode - Absolute Koordinaten
 ```python
-# YOLO-Pose Style (head.py, Zeile 382-383)
 ground_point_x = box_center_x + offset_x * 2.0 * box_width
 ground_point_y = box_center_y + offset_y * 2.0 * box_height
 ```
@@ -56,7 +54,6 @@ Der Offset wird relativ zur Box interpretiert:
 
 ### 5. Loss Funktion - OKS-Style
 ```python
-# Aus YOLO-Pose (ultralytics/utils/loss.py, Zeile 187-191)
 d = (pred_x - gt_x)² + (pred_y - gt_y)²      # Euklidische Distanz
 e = d / (2σ² × box_area × 2)                  # Normalisiert auf Box-Größe
 loss = 1 - exp(-e)                            # OKS-Style Loss
@@ -192,8 +189,5 @@ Alle Koordinaten sind normalisiert (0-1).
 - Keypoint Loss: `ultralytics/utils/loss.py` (KeypointLoss)
 - ROI-Align: `torchvision.ops.roi_align`
 
-## Lizenz
-
-Dieses Projekt basiert auf Code von Ultralytics (AGPL-3.0).
 
 
