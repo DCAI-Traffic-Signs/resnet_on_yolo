@@ -182,12 +182,3 @@ Die Labels müssen im YOLO-Pose Format vorliegen:
 ```
 
 Alle Koordinaten sind normalisiert (0-1).
-
-## Referenzen
-
-- YOLO-Pose: `ultralytics/nn/modules/head.py` (Pose class)
-- Keypoint Loss: `ultralytics/utils/loss.py` (KeypointLoss)
-- ROI-Align: `torchvision.ops.roi_align`
-
-
-
