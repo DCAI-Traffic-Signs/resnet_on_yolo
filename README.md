@@ -18,8 +18,6 @@ Dieses Projekt extrahiert die Keypoint-Vorhersage-Logik aus YOLO-Pose und wendet
 
 ## Architektur
 
-Die Architektur basiert direkt auf YOLO-Pose (Ultralytics):
-
 ### 1. Backbone - Feature Extraction
 ```
 Eingabebild (640×640×3) → ResNet34 → Feature Map (20×20×512)
